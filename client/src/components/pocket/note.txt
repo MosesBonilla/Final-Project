@@ -1,0 +1,3 @@
+Despite how "close" I was, I was still unsure where exactly the error was, and so I have resorted to external code to serve as patchwork until these snippets are functioning.
+
+basic functions should all still function after swapping in/out.
