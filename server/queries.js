@@ -15,7 +15,21 @@ const pool = new POOL({
 
 
 //create data to db
+const createLink = (req, res) =>{
+    const name =req.body.name
+    const URL =req.body.URL
 
+    pool.query('INSERT INTO links (name, URL) VALUES ($1, $2)',
+        [name, URL],
+        (error, results) =>{
+            if (error){
+                throw error
+            }
+            res.status(201).send(`Link added with ID: ${results.insertID}`)
+        }
+    )
+
+}
 //request data from db  
 const getLinks =(req, res) =>{
     pool.query('SELECT * FROM links ORDER BY id ASC', (error, result)=>{
@@ -33,5 +47,5 @@ const getLinks =(req, res) =>{
 
 module.exports ={ //this exports methods within the js
     getLinks,
-
+    createLink
 }

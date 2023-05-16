@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Form from './Form';
 import Table from './Table';
 
@@ -6,6 +6,35 @@ const LinkContainer = (props) => {
   const [tasks, setTasks] = useState([]);
   const [name, setName] = useState('')
   const [links , setLink] = useState('')
+
+
+  const postLink = async(newLink) => {
+    // let testLink = {
+    //   name: "Test",
+    //   URL: "test.com"
+    // }
+
+    try {
+      let response = await fetch('/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newLink)
+      })
+      console.log(response)
+      let message = response.text()
+      console.log(message)
+    }catch (error) {
+      console.log(error)
+    }
+
+  }
+
+ useEffect (()=>{
+    postLink()
+  }, [])
+
 
   const handleRemove = (index) => {
     const updatedTasks = [...tasks];
