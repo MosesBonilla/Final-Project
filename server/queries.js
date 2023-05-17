@@ -31,7 +31,7 @@ const createLink = (req, res) =>{
 
 }
 //request data from db  
-const getLinks =(req, res) =>{
+const getLinks =(req, res) =>{ //next step
     pool.query('SELECT * FROM links ORDER BY id ASC', (error, result)=>{
         if(error){
             throw error;
