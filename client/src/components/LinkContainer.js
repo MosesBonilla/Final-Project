@@ -60,3 +60,9 @@ const LinkContainer = (props) => {
 }
 
 export default LinkContainer
+
+//getlinks loop while id [some truth value about id], repeat making table until end of array.length
+//while x< getlinks.length{
+//  
+//  loop handleChange targeting prop.name, prop.url
+// }
