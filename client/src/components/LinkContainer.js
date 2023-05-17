@@ -13,6 +13,15 @@ const LinkContainer = (props) => {
     //   name: "Test",
     //   URL: "test.com"
     // }
+    
+    /*methods for crud
+    method to read, write, delete, change
+    edit button changes 
+
+    add funcctionality for submit that submits information from the website to db
+    button to call for a delete on specified ID on db list
+    function to display everything already existing on the DB
+  */
 
     try {
       let response = await fetch('/new', {
@@ -32,7 +41,7 @@ const LinkContainer = (props) => {
   }
 
  useEffect (()=>{
-    postLink()
+   // postLink()
   }, [])
 
 
@@ -51,6 +60,7 @@ const LinkContainer = (props) => {
       setTasks([...tasks, obj]);
       setName('')
       setLink('')
+
     }
   }
 

@@ -38,9 +38,11 @@ const getLinks =(req, res) =>{
         }
         res.status(200).json(result.rows)
     })
-}
+} //double, no this is suppsoed- this gets information, this is for making the list. just needs to be inserted, probably in LC
+
 
 //update link in db
+
 
 //delete link in db
 

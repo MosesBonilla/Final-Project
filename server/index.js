@@ -26,7 +26,7 @@ app.get('/', (req, res) =>{
 
 //C.R.U.D
 //C.REATE
-//R.READ
+//R.EAD
 //U.PDATE
 //D.ELETE
 
