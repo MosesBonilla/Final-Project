@@ -1,13 +1,15 @@
 //connect to postgreSQL using the node-postgres package
 
 const { KeyCard } = require('./password')
+//require('dotenv').config()
+
 const POOL = require('pg').Pool
 
 const pool = new POOL({
     user: 'me',
     host: 'localhost',
     database: 'favlinks',
-    password: KeyCard,
+    password: KeyCard || process.env.POSTGRES_PASSWORD,
     port: 5432
 
     //environment variable, something limited to just your local area
@@ -19,6 +21,7 @@ const createLink = (req, res) =>{
     const name =req.body.name
     const URL =req.body.URL
 
+    if(name && URL){
     pool.query('INSERT INTO links (name, URL) VALUES ($1, $2)',
         [name, URL],
         (error, results) =>{
@@ -27,7 +30,9 @@ const createLink = (req, res) =>{
             }
             res.status(201).send(`Link added with ID: ${results.insertID}`)
         }
-    )
+    )} else {
+        response.status(403).send("Server is expecting data object with a name and URL parameter")
+    }
 
 }
 

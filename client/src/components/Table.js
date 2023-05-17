@@ -21,7 +21,7 @@ const TableBody = (props) => {
       <tr key={index}>
         <td>{row.name}</td>
         <td>
-          <a href={row.URL}>{row.URL}</a>
+          <a href={row.url}>{row.url}</a>
         </td>
         <td>
           <button onClick={() => props.removeLink(index)}>Delete</button>
@@ -41,7 +41,7 @@ const Table = (props) => {
     <table>
       <TableHeader/>
 
-      <TableBody linkData={props.linkData} removeLink={props.removeLink}/>
+      <TableBody linkData={props.linkData == null ? [] : props.linkData} removeLink={props.removeLink}/>
     </table>
     )
   }

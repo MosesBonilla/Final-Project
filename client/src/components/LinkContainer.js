@@ -1,16 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Table from './Table'
 import Form from './Form';
 
 const LinkContainer = (props) => {
 
-  const [links, setLinks]= useState([])
+  const [links, setLinks]= useState(null)
+  
+  
 
+  const fetchLinks= async()=>{
+    // fetches data from db for tbale
+    try{
+      let response = await fetch('/links')
+      console.log(response)
+      let data = await response.json()
+      setLinks(data)
+      console.log(data)
+    }catch (error){
+      console.log(error)
+    }
+  }
+  
   const postLink = async(newLink)=>{
     // let testLink = {
     //   name: 'Test 9/9/9999',
     //   URL: 'test.com',
     // }
+
+    
 
     try{
       let response = await fetch('/new', {
@@ -22,12 +39,23 @@ const LinkContainer = (props) => {
       })
       console.log(response)
 
-      let message = response.text()
+      let message = await response.text()
       console.log(message)
     }catch (error){
       console.log(error)
     }
   }
+
+  useEffect(()=>{
+    //do something
+    if(links == null){
+      fetchLinks()
+    }
+    //setLinks(data)
+
+  }, ["when these values change"])
+
+
 
   const handleRemove = (index) => {
     /*
@@ -39,10 +67,15 @@ const LinkContainer = (props) => {
     /*
             TODO - Create logic to set state and add new favLink to favLinks array in state
         */
-      setLinks([...links, favLink]) 
+ //     setLinks([...links, favLink]) //updates local list
       // save data to Postgres
-      postLink(favLink)
+      postLink(favLink) //updates/saves to db
+
+      //pulling latest data from postgres
+      fetchLinks()
   }
+
+  
 
   return (
     <div className="container">
@@ -50,6 +83,14 @@ const LinkContainer = (props) => {
       <p>Add a new url with a name and link to the table.</p>
       {/*TODO - Add Table Component */}
         <Table linkData={links} removeLink={handleRemove}/>
+       
+       
+        {/* while (let x=0; x != getLinks.index+1; x++){
+    
+    console.log(x)
+    //handlechange(getLinks.URL, getLinks.name)
+    
+    } */}
       <br />
 
       <h3>Add New</h3>
@@ -84,5 +125,6 @@ while x<=getlinks.index{
 }
 
 something like that...
-Hello?
+
 */ 
+
