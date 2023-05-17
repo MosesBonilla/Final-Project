@@ -61,8 +61,27 @@ const LinkContainer = (props) => {
 
 export default LinkContainer
 
-//getlinks loop while id [some truth value about id], repeat making table until end of array.length
-//while x< getlinks.length{
-//  
-//  loop handleChange targeting prop.name, prop.url
-// }
+/*getlinks loop while id [some truth value about id], repeat making table until end of array.length
+  while x< getlinks.length{
+  
+  loop handleChange targeting prop.name, prop.url
+conflict: can't just use getlinks.length, as getlinks isn't an array.
+i could focus the index getLinks.index?
+can use .index
+getlinks.index
+while x<=getlinks.index{
+  handlechange(getlinks.URL, getlinks.name)}
+
+  have to change destination, can't be just url/name,
+  has to follow... prop?
+  link new information to notifyParent?
+  no use setlinks, because that command set takes in information(?)
+
+  
+}
+while x<=getlinks.index{
+  setLinks(getlinks.name, getlinks.url)
+}
+
+something like that...
+*/ 
